@@ -1181,6 +1181,137 @@
     @media (min-width: 640px) {
       .hero-ctas { flex-direction: row; justify-content: center; }
     }
+    /* ========== COOKIE BANNER ========== */
+    #cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: #fff;
+      border-top: 1px solid var(--sage-200);
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.08);
+      padding: 20px 24px;
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+    }
+    #cookie-banner.visible { transform: translateY(0); }
+    .cookie-banner-content {
+      max-width: 1152px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .cookie-banner-text {
+      flex: 1;
+      min-width: 240px;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--sage-700);
+    }
+    .cookie-banner-text p { margin: 0; }
+    .cookie-banner-buttons {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+    }
+    .cookie-btn {
+      padding: 10px 20px;
+      border-radius: 9999px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+    .cookie-btn-primary {
+      background: var(--sage-500);
+      color: white;
+    }
+    .cookie-btn-primary:hover { background: var(--sage-600); }
+    .cookie-btn-secondary {
+      background: var(--cream-200);
+      color: var(--sage-700);
+    }
+    .cookie-btn-secondary:hover { background: var(--sage-100); }
+    .cookie-btn-link {
+      background: transparent;
+      color: var(--sage-500);
+      text-decoration: underline;
+      padding: 10px 8px;
+    }
+    .cookie-btn-link:hover { color: var(--sage-600); }
+    @media (max-width: 640px) {
+      .cookie-banner-content { flex-direction: column; align-items: flex-start; }
+      .cookie-banner-buttons { width: 100%; justify-content: flex-start; }
+    }
+
+    /* ========== PRIVACY MODAL ========== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.visible { opacity: 1; pointer-events: auto; }
+    .modal-content {
+      background: #fff;
+      border-radius: 24px;
+      padding: 40px;
+      max-width: 640px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 1.75rem;
+      cursor: pointer;
+      color: var(--sage-400);
+      transition: color 0.3s;
+      line-height: 1;
+    }
+    .modal-close:hover { color: var(--sage-700); }
+    .modal-content h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.5rem;
+      color: var(--sage-800);
+      margin-bottom: 20px;
+    }
+    .modal-content h3 {
+      font-size: 1.125rem;
+      color: var(--sage-600);
+      margin-top: 24px;
+      margin-bottom: 8px;
+    }
+    .modal-content p, .modal-content li {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: var(--sage-700);
+    }
+    .modal-content ul { list-style: disc; padding-left: 20px; }
+    .modal-content a { color: var(--sage-500); text-decoration: underline; }
+    .modal-content a:hover { color: var(--sage-600); }
+    @media (max-width: 640px) {
+      .modal-content { padding: 28px 20px; }
+    }
   </style>
 </head>
 <body>
@@ -1667,6 +1798,7 @@
             <li><a href="#servicios"><span></span>Servicios</a></li>
             <li><a href="#osteopatia"><span></span>Osteopatía</a></li>
             <li><a href="#contacto"><span></span>Contacto</a></li>
+            <li><a href="#" id="privacy-link"><span></span>Política de privacidad</a></li>
           </ul>
         </div>
 
@@ -1797,6 +1929,147 @@
         }
       });
     });
+  </script>
+
+  <!-- ========== COOKIE BANNER ========== -->
+  <div id="cookie-banner">
+    <div class="cookie-banner-content">
+      <div class="cookie-banner-text">
+        <p>Este sitio utiliza cookies técnicas y de terceros (Google Fonts) para garantizar su correcto funcionamiento. Al continuar navegando, aceptas su uso.</p>
+      </div>
+      <div class="cookie-banner-buttons">
+        <button id="cookie-accept" class="cookie-btn cookie-btn-primary">Aceptar</button>
+        <button id="cookie-reject" class="cookie-btn cookie-btn-secondary">Rechazar</button>
+        <button id="cookie-more" class="cookie-btn cookie-btn-link">Más información</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== PRIVACY MODAL ========== -->
+  <div id="privacy-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close">&times;</button>
+      <h2>Política de Privacidad y Cookies</h2>
+
+      <h3>1. Responsable del tratamiento</h3>
+      <p><strong>Centro Integral Paloma Molina</strong><br>
+      Motril, Granada<br>
+      Email: info@osteopatiapalomamolina.com<br>
+      Teléfono: +34 677 200 013</p>
+
+      <h3>2. Finalidad del tratamiento</h3>
+      <p>Gestionar las solicitudes de cita y consultas recibidas a través del formulario de contacto, WhatsApp o teléfono, así como enviar información sobre nuestros servicios si así lo has solicitado.</p>
+
+      <h3>3. Cookies utilizadas</h3>
+      <p>Este sitio web utiliza únicamente cookies técnicas necesarias para su correcto funcionamiento:</p>
+      <ul>
+        <li><strong>Cookies técnicas:</strong> Permiten la navegación y el correcto funcionamiento de la página (por ejemplo, guardar tu preferencia sobre el aviso de cookies).</li>
+        <li><strong>Cookies de terceros:</strong> Google Fonts almacena temporalmente ciertos datos para la correcta visualización tipográfica. No utilizamos cookies de analytics, publicidad ni redes sociales.</li>
+      </ul>
+
+      <h3>4. Base legal</h3>
+      <p>El tratamiento se basa en tu consentimiento expreso al contactarnos o aceptar las cookies, así como en el interés legítimo de prestar nuestros servicios.</p>
+
+      <h3>5. Derechos</h3>
+      <p>Puedes ejercer tus derechos de acceso, rectificación, supresión, limitación, portabilidad y oposición enviando un email a info@osteopatiapalomamolina.com. También puedes retirar tu consentimiento en cualquier momento.</p>
+
+      <h3>6. Conservación de datos</h3>
+      <p>Los datos personales se conservarán mientras mantengamos una relación profesional o durante el tiempo necesario para cumplir con obligaciones legales.</p>
+
+      <h3>7. Destinatarios</h3>
+      <p>No cedemos datos personales a terceros, salvo obligación legal o proveedores de servicios necesarios para la actividad (hosting, WhatsApp, Google Fonts).</p>
+
+      <h3>8. Cookies: gestión y configuración</h3>
+      <p>Puedes gestionar las cookies desde la configuración de tu navegador. A continuación, los enlaces para los navegadores más comunes:</p>
+      <ul>
+        <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a></li>
+        <li><a href="https://support.mozilla.org/es/kb/habilitar-y-deshabilitar-cookies-sitios-web-rastrear-preferencias" target="_blank" rel="noopener">Mozilla Firefox</a></li>
+        <li><a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari</a></li>
+        <li><a href="https://support.microsoft.com/es-es/windows/eliminar-y-administrar-cookies-168dab11-0753-043d-7c16-ede5947fc64d" target="_blank" rel="noopener">Microsoft Edge</a></li>
+      </ul>
+
+      <h3>9. Contacto</h3>
+      <p>Para cualquier consulta sobre esta política, puedes escribirnos a info@osteopatiapalomamolina.com.</p>
+
+      <p style="margin-top:24px;font-size:0.8rem;color:var(--sage-400);">Última actualización: 23 de abril de 2026</p>
+    </div>
+  </div>
+
+  <!-- ========== COOKIE JAVASCRIPT ========== -->
+  <script>
+    (function() {
+      var COOKIE_KEY = 'paloma_cookie_consent';
+      var EXPIRY_DAYS = 30;
+      var banner = document.getElementById('cookie-banner');
+      var modal = document.getElementById('privacy-modal');
+      var modalClose = document.getElementById('modal-close');
+      var privacyLink = document.getElementById('privacy-link');
+
+      function getCookieConsent() {
+        try {
+          var data = JSON.parse(localStorage.getItem(COOKIE_KEY));
+          if (data && data.timestamp) {
+            var elapsed = Date.now() - data.timestamp;
+            if (elapsed < EXPIRY_DAYS * 24 * 60 * 60 * 1000) {
+              return data.status;
+            }
+          }
+        } catch(e) {}
+        return null;
+      }
+
+      function setCookieConsent(status) {
+        localStorage.setItem(COOKIE_KEY, JSON.stringify({
+          status: status,
+          timestamp: Date.now()
+        }));
+      }
+
+      function showBanner() { banner.classList.add('visible'); }
+      function hideBanner() { banner.classList.remove('visible'); }
+
+      function openModal() {
+        modal.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        modal.classList.remove('visible');
+        document.body.style.overflow = '';
+      }
+
+      // Init
+      if (getCookieConsent() === null) {
+        showBanner();
+      }
+
+      document.getElementById('cookie-accept').addEventListener('click', function() {
+        setCookieConsent('accepted');
+        hideBanner();
+      });
+
+      document.getElementById('cookie-reject').addEventListener('click', function() {
+        setCookieConsent('rejected');
+        hideBanner();
+      });
+
+      document.getElementById('cookie-more').addEventListener('click', function() {
+        openModal();
+      });
+
+      modalClose.addEventListener('click', closeModal);
+
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeModal();
+      });
+
+      if (privacyLink) {
+        privacyLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          openModal();
+        });
+      }
+    })();
   </script>
 
 </body>
