@@ -611,7 +611,10 @@
       gap: 24px;
     }
     @media (min-width: 768px) {
-      .features-grid { grid-template-columns: repeat(3, 1fr); }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .features-grid { grid-template-columns: repeat(4, 1fr); }
     }
     .feature-card {
       position: relative;
@@ -1390,6 +1393,14 @@
           </div>
           <h3>Atención Personalizada</h3>
           <p>Cada sesión adaptada a tus necesidades</p>
+          <div class="feature-card-accent"></div>
+        </div>
+        <div class="feature-card reveal reveal-delay-4">
+          <div class="feature-card-icon">
+            <svg class="icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+          </div>
+          <h3>Eventos Privados</h3>
+          <p>Organizamos sesiones grupales y eventos personalizados</p>
           <div class="feature-card-accent"></div>
         </div>
       </div>
