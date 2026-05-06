@@ -587,21 +587,47 @@
       margin: 0 auto 32px;
       border-radius: 9999px;
     }
-    .welcome-text {
-      max-width: 768px;
+    .welcome-about {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      max-width: 1000px;
       margin: 0 auto 80px;
-      text-align: center;
+      align-items: center;
     }
-    .welcome-text p {
+    .welcome-about-image {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(59,77,55,0.15);
+      transition: transform 0.4s, box-shadow 0.4s;
+    }
+    .welcome-about-image:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 48px rgba(59,77,55,0.2);
+    }
+    .welcome-about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      aspect-ratio: 3/4;
+    }
+    .welcome-about-text {
+      text-align: left;
+    }
+    .welcome-about-text p {
       font-size: clamp(1.125rem, 2vw, 1.25rem);
       color: #3b4d37;
       font-weight: 300;
       margin-bottom: 24px;
       line-height: 1.7;
     }
-    .welcome-text p:last-of-type {
+    .welcome-about-text p:last-of-type {
       font-size: 1.125rem;
       color: rgba(59,77,55,0.7);
+    }
+    @media (min-width: 768px) {
+      .welcome-about { grid-template-columns: 1fr 1fr; }
     }
 
     /* Feature cards */
@@ -1485,20 +1511,25 @@
         <div class="welcome-divider reveal reveal-delay-1"></div>
       </div>
 
-      <div class="welcome-text">
-        <p class="reveal reveal-delay-1">
-          ¿Necesitas resolver alguna disfunción en tu cuerpo que te está
-          afectando en tu vida diaria?
-        </p>
-        <p class="reveal reveal-delay-2">
-          No solo damos masajes, creamos experiencias para la gente. Nuestro
-          centro de osteopatía se ha creado basándose en la creencia de que un
-          cuerpo equilibrado te asegura mayor calidad de vida.
-        </p>
-        <a href="#servicios" class="reveal reveal-delay-3" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:#485f43;color:white;border-radius:9999px;font-weight:500;transition:all 0.3s;" onmouseover="this.style.background='#3b4d37';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(72,95,67,0.3)'" onmouseout="this.style.background='#485f43';this.style.transform='translateY(0)';this.style.boxShadow='none'">
-          Nuestros Servicios
-          <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </a>
+      <div class="welcome-about">
+        <div class="welcome-about-image reveal reveal-delay-1">
+          <img src="paloma-molina-osteopata.png" alt="Paloma Molina - Osteópata">
+        </div>
+        <div class="welcome-about-text">
+          <p class="reveal reveal-delay-1">
+            ¿Necesitas resolver alguna disfunción en tu cuerpo que te está
+            afectando en tu vida diaria?
+          </p>
+          <p class="reveal reveal-delay-2">
+            No solo damos masajes, creamos experiencias para la gente. Nuestro
+            centro de osteopatía se ha creado basándose en la creencia de que un
+            cuerpo equilibrado te asegura mayor calidad de vida.
+          </p>
+          <a href="#servicios" class="reveal reveal-delay-3" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:#485f43;color:white;border-radius:9999px;font-weight:500;transition:all 0.3s;" onmouseover="this.style.background='#3b4d37';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(72,95,67,0.3)'" onmouseout="this.style.background='#485f43';this.style.transform='translateY(0)';this.style.boxShadow='none'">
+            Nuestros Servicios
+            <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
       </div>
 
       <div class="features-grid">
